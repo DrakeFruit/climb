@@ -288,6 +288,7 @@
           "OnObjectTriggerExit": null,
           "OnTriggerEnter": null,
           "OnTriggerExit": null,
+          "RenderType": "On",
           "SmoothingAngle": 40,
           "Static": true,
           "Surface": null,
@@ -308,7 +309,7 @@
             "_type": "gameobject",
             "go": "044f1264-756d-4ad5-a71b-10de9539bba9"
           },
-          "ArmLength": 128,
+          "ArmLength": 150,
           "Hammer": {
             "_type": "gameobject",
             "go": "3a353a55-b7f8-4a13-971c-04ba6d1b0a39"
@@ -406,7 +407,7 @@
           "__guid": "044f1264-756d-4ad5-a71b-10de9539bba9",
           "Flags": 0,
           "Name": "Arm",
-          "Position": "0,0,64",
+          "Position": "0,0,48",
           "Enabled": true
         },
         {
