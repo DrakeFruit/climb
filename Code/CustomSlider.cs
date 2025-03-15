@@ -18,11 +18,12 @@ public sealed class CustomSlider : Component
 		joint.Point1 = new PhysicsPoint( SelfBody.PhysicsBody, Offset );
 		joint.Point2 = new PhysicsPoint( Body.PhysicsBody );
 	}
+	
 	protected override void OnFixedUpdate()
 	{
 		if ( IsProxy ) return;
 		
-		var dir = Body.WorldPosition - WorldPosition;
+		var dir = WorldPosition + Offset - Body.WorldPosition;
 		if ( dir.Length > Length )
 		{
 			

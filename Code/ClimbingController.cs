@@ -53,18 +53,21 @@ public sealed class ClimbingController : Component
 	protected override void OnFixedUpdate()
 	{
 		if ( IsProxy ) return;
-
-		Scene.Camera.WorldPosition = WorldPosition.WithY( -512 ) + Vector3.Zero.WithZ( 64 );
+		
+		Scene.Camera.WorldPosition = WorldPosition.WithY( -300 ) + Vector3.Zero.WithZ( 64 );
+		
 		var mouseTr = Scene.Trace.Ray( Scene.Camera.ScreenPixelToRay( Mouse.Position ), 1000 ).Run();
 		CursorBody.Position = mouseTr.EndPosition.WithY( 0 );
+		
 		HammerBody.ApplyForce( PlayerBody.Velocity );
 
-		if ( HammerBody.Touching.Any() )
+		if ( HammerBody.Touching.Any( x => !x.Tags.Has( "Player" ) ) )
 		{
 			var dir = Head.WorldPosition - CursorBody.Position;
 			var force = dir.Normal * MathF.Pow( dir.Length, 2 );
 			force = force.ClampLength( 0, 125 );
 			PlayerBody.ApplyForceAt( Head.WorldPosition, force * PlayerBody.Mass * 25 );
+			//PlayerBody.ApplyForceAt( Head.WorldPosition, -PlayerBody.Velocity * 10000 ); TODO: damp somehow
 		}
 	}
 }

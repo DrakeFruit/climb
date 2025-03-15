@@ -29,7 +29,7 @@
         "__guid": "a16c2f53-eb4a-4b4c-b068-08893c617b4b",
         "AngularDamping": 0,
         "Gravity": true,
-        "LinearDamping": 0,
+        "LinearDamping": 2,
         "Locking": {
           "X": false,
           "Y": true,
@@ -60,8 +60,8 @@
           "go": "b58d9ec4-9174-4259-9775-fddb65ba6972",
           "component_type": "Rigidbody"
         },
-        "Length": 2,
-        "Offset": "0,0,64",
+        "Length": 1,
+        "Offset": "0,0,48",
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
@@ -72,15 +72,16 @@
     ],
     "Children": [
       {
-        "__guid": "fc06c03a-919d-44f6-938c-815472812530",
+        "__guid": "1abc28a3-b750-4992-828e-f761f040341b",
         "Flags": 0,
-        "Name": "Sphere",
-        "Position": "0,48,32",
+        "Name": "water_drum_01_base",
+        "Position": "0,24.48143,19.22501",
+        "Scale": "0.6,0.6,0.6",
         "Enabled": true,
         "Components": [
           {
             "__type": "Sandbox.ModelRenderer",
-            "__guid": "e9dd57d7-ffb4-444a-ad59-6da672f6d1db",
+            "__guid": "a62646f3-71ef-4863-9d32-54f1de3f0ef5",
             "BodyGroups": 18446744073709551615,
             "CreateAttachments": false,
             "MaterialGroup": null,
@@ -100,27 +101,44 @@
             },
             "RenderType": "On",
             "Tint": "1,1,1,1"
-          },
+          }
+        ],
+        "Children": [
           {
-            "__type": "Sandbox.SphereCollider",
-            "__guid": "36806418-67eb-461a-83f9-d91105710062",
-            "Center": "0,0,0",
-            "Friction": 10,
-            "IsTrigger": false,
-            "OnComponentDestroy": null,
-            "OnComponentDisabled": null,
-            "OnComponentEnabled": null,
-            "OnComponentFixedUpdate": null,
-            "OnComponentStart": null,
-            "OnComponentUpdate": null,
-            "OnObjectTriggerEnter": null,
-            "OnObjectTriggerExit": null,
-            "OnTriggerEnter": null,
-            "OnTriggerExit": null,
-            "Radius": 32,
-            "Static": false,
-            "Surface": null,
-            "SurfaceVelocity": "0,0,0"
+            "__guid": "c539810d-578e-4021-8280-ac775069aceb",
+            "Flags": 0,
+            "Name": "Collider",
+            "Rotation": "-0.7071067,0,0,0.7071068",
+            "Enabled": true,
+            "Components": [
+              {
+                "__type": "Sandbox.HullCollider",
+                "__guid": "811ad002-9557-41fb-8bb5-02fb9c30dcbb",
+                "BoxSize": "50,50,50",
+                "Center": "0,0,0",
+                "Friction": 10,
+                "Height": 1024,
+                "IsTrigger": false,
+                "OnComponentDestroy": null,
+                "OnComponentDisabled": null,
+                "OnComponentEnabled": null,
+                "OnComponentFixedUpdate": null,
+                "OnComponentStart": null,
+                "OnComponentUpdate": null,
+                "OnObjectTriggerEnter": null,
+                "OnObjectTriggerExit": null,
+                "OnTriggerEnter": null,
+                "OnTriggerExit": null,
+                "Points": [],
+                "Radius": 32,
+                "Radius2": 0,
+                "Slices": 16,
+                "Static": false,
+                "Surface": null,
+                "SurfaceVelocity": "0,0,0",
+                "Type": "Cylinder"
+              }
+            ]
           }
         ]
       },
@@ -165,9 +183,9 @@
             "__guid": "b4a477e2-81e9-4684-9ff6-ba88fc7c82c3",
             "Flags": 0,
             "Name": "Handle",
-            "Position": "50,0,-0.000009356067",
+            "Position": "23.99998,0.3519211,-0.000007301569",
             "Rotation": "0.5,0.4999999,0.4999999,0.5",
-            "Scale": "0.2,0.2,2",
+            "Scale": "0.1,0.1,1",
             "Enabled": true,
             "Components": [
               {
@@ -197,7 +215,7 @@
                 "__type": "Sandbox.BoxCollider",
                 "__guid": "543b411f-dd56-426d-b013-29abb303c032",
                 "Center": "0,0,0",
-                "Friction": null,
+                "Friction": 0,
                 "IsTrigger": false,
                 "OnComponentDestroy": null,
                 "OnComponentDisabled": null,
@@ -209,7 +227,7 @@
                 "OnObjectTriggerExit": null,
                 "OnTriggerEnter": null,
                 "OnTriggerExit": null,
-                "Scale": "50,50,50",
+                "Scale": "50,8096,50",
                 "Static": false,
                 "Surface": null,
                 "SurfaceVelocity": "0,0,0"
@@ -230,7 +248,7 @@
                 "OnObjectTriggerExit": null,
                 "OnTriggerEnter": null,
                 "OnTriggerExit": null,
-                "Scale": "55,55,50",
+                "Scale": "55,8500,50",
                 "Static": false,
                 "Surface": null,
                 "SurfaceVelocity": "0,0,0"
@@ -241,9 +259,9 @@
             "__guid": "21cad013-768c-4492-8b88-4c3e5653deb3",
             "Flags": 0,
             "Name": "Head",
-            "Position": "106,0,0.000003814697",
+            "Position": "52.00001,0.3519135,-0.00001494586",
             "Rotation": "0.7071068,0,0,0.7071068",
-            "Scale": "0.25,0.25,0.6",
+            "Scale": "0.12,0.15,0.3",
             "Enabled": true,
             "Components": [
               {
@@ -285,7 +303,7 @@
                 "OnObjectTriggerExit": null,
                 "OnTriggerEnter": null,
                 "OnTriggerExit": null,
-                "Scale": "50,50,50",
+                "Scale": "50,8096,50",
                 "Static": false,
                 "Surface": null,
                 "SurfaceVelocity": "0,0,0"
@@ -306,12 +324,39 @@
                 "OnObjectTriggerExit": null,
                 "OnTriggerEnter": null,
                 "OnTriggerExit": null,
-                "Scale": "55,55,55",
+                "Scale": "55,8500,55",
                 "Static": false,
                 "Surface": null,
                 "SurfaceVelocity": "0,0,0"
               }
             ]
+          }
+        ]
+      },
+      {
+        "__guid": "39f947bf-dfbb-46bd-83fa-6eaeb1fa2a24",
+        "Flags": 0,
+        "Name": "citizen_human_male",
+        "Rotation": "0,0,-0.7071067,0.7071068",
+        "Components": [
+          {
+            "__type": "Sandbox.Prop",
+            "__guid": "f27bdaf9-73be-4a45-81d3-181b9a079da1",
+            "BodyGroups": 681,
+            "Health": 0,
+            "IsStatic": false,
+            "MaterialGroup": null,
+            "Model": "models/citizen_human/citizen_human_male.vmdl",
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "OnPropBreak": null,
+            "OnPropTakeDamage": null,
+            "StartAsleep": false,
+            "Tint": "1,1,1,1"
           }
         ]
       }
