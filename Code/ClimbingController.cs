@@ -68,7 +68,7 @@ public sealed class ClimbingController : Component
 
 		var rot = Rotation.LookAt( CursorBody.Position - Slider.WorldPosition, Slider.LocalRotation.Forward );
 		Gizmo.Draw.Arrow( Slider.WorldPosition, Slider.WorldPosition + rot.Forward * 20 );
-		Slider.WorldRotation = Rotation.FromPitch( rot.Normal.Pitch() + 90 );
+		Slider.WorldRotation = rot * Rotation.FromPitch(90);
 
 		if ( HammerBody.Touching.Any( x => !x.Tags.Has( "Player" ) ) )
 		{
