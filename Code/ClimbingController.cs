@@ -1,17 +1,22 @@
 using System;
 using Sandbox;
 using Sandbox.Physics;
+using SliderJoint = Sandbox.SliderJoint;
 
 namespace Climb;
 public sealed class ClimbingController : Component
 {
 	[Property] public GameObject Hammer { get; set; }
+	[Property] public SliderJoint Slider { get; set; }
+	[Property] public GameObject Handle { get; set; }
 	[Property] public GameObject Head { get; set; }
+	[Property] public float Length { get; set; }
+	[Property] public Vector3 Offset { get; set; }
 	Sandbox.Physics.FixedJoint GrabJoint { get; set; }
 	PhysicsBody CursorBody { get; set; }
 	Rigidbody HammerBody { get; set; }
 	Rigidbody PlayerBody { get; set; }
-	PhysicsSpring TempSpring { get; set; }
+	Rigidbody SliderBody { get; set; }
 	protected override void OnStart()
 	{
 		if ( IsProxy )
@@ -33,6 +38,7 @@ public sealed class ClimbingController : Component
 		HammerBody = Hammer.GetComponent<Rigidbody>();
 		CursorBody = new PhysicsBody( Scene.PhysicsWorld ) { BodyType = PhysicsBodyType.Keyframed };
 		PlayerBody = Components.Get<Rigidbody>();
+		SliderBody = Slider.Components.Get<Rigidbody>();
 		
 		Mouse.Visible = true;
 
@@ -44,8 +50,7 @@ public sealed class ClimbingController : Component
 		
 		var maxForce = 100 * HammerBody.Mass * Scene.PhysicsWorld.Gravity.Length;
 		GrabJoint.SpringLinear = new PhysicsSpring( 15, 2, maxForce );
-		GrabJoint.SpringAngular = new PhysicsSpring( 15, 2, 0 );
-		TempSpring = GrabJoint.SpringLinear;
+		GrabJoint.SpringAngular = new PhysicsSpring( 0, 0, 0 );
 
 		Hammer.Flags = Hammer.Flags.WithFlag( GameObjectFlags.Absolute, true );
 	}
@@ -54,12 +59,16 @@ public sealed class ClimbingController : Component
 	{
 		if ( IsProxy ) return;
 		
-		Scene.Camera.WorldPosition = WorldPosition.WithY( -300 ) + Vector3.Zero.WithZ( 64 );
-		
+		Scene.Camera.WorldPosition = WorldPosition.WithY( -300 ) + Vector3.Zero.WithZ( 42 );
+
+		var offset = WorldPosition + Offset;
 		var mouseTr = Scene.Trace.Ray( Scene.Camera.ScreenPixelToRay( Mouse.Position ), 1000 ).Run();
-		CursorBody.Position = mouseTr.EndPosition.WithY( 0 );
-		
-		HammerBody.ApplyForce( PlayerBody.Velocity );
+		var pos = offset + ( mouseTr.EndPosition.WithY( 0 ) - ( offset ) ).ClampLength( Length );
+		CursorBody.Position = pos;
+
+		var rot = Rotation.LookAt( CursorBody.Position - Slider.WorldPosition, Slider.LocalRotation.Forward );
+		Gizmo.Draw.Arrow( Slider.WorldPosition, Slider.WorldPosition + rot.Forward * 20 );
+		Slider.WorldRotation = Rotation.FromPitch( rot.Normal.Pitch() + 90 );
 
 		if ( HammerBody.Touching.Any( x => !x.Tags.Has( "Player" ) ) )
 		{
@@ -67,7 +76,6 @@ public sealed class ClimbingController : Component
 			var force = dir.Normal * MathF.Pow( dir.Length, 2 );
 			force = force.ClampLength( 0, 125 );
 			PlayerBody.ApplyForceAt( Head.WorldPosition, force * PlayerBody.Mass * 25 );
-			//PlayerBody.ApplyForceAt( Head.WorldPosition, -PlayerBody.Velocity * 10000 ); TODO: damp somehow
 		}
 	}
 }

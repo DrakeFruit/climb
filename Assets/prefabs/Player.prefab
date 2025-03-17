@@ -13,16 +13,28 @@
           "_type": "gameobject",
           "go": "b58d9ec4-9174-4259-9775-fddb65ba6972"
         },
+        "Handle": {
+          "_type": "gameobject",
+          "go": "b4a477e2-81e9-4684-9ff6-ba88fc7c82c3"
+        },
         "Head": {
           "_type": "gameobject",
           "go": "21cad013-768c-4492-8b88-4c3e5653deb3"
         },
+        "Length": 96,
+        "Offset": "0,0,48",
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
-        "OnComponentUpdate": null
+        "OnComponentUpdate": null,
+        "Slider": {
+          "_type": "component",
+          "component_id": "c3edf3f5-2ee8-4d1a-8cff-a08f480b53a0",
+          "go": "be21aa44-521c-4880-8118-c5c2354f63a3",
+          "component_type": "SliderJoint"
+        }
       },
       {
         "__type": "Sandbox.Rigidbody",
@@ -52,29 +64,115 @@
         "StartAsleep": false
       },
       {
-        "__type": "CustomSlider",
-        "__guid": "ea3f1207-0a45-4509-8ac2-f966fe855153",
+        "__type": "Sandbox.SpringJoint",
+        "__guid": "e94b5168-d0c6-4ae0-9d31-e34ca94f70cc",
+        "Attachment": "Auto",
         "Body": {
-          "_type": "component",
-          "component_id": "a2e14478-d98b-49ac-b797-7e33b503fc09",
-          "go": "b58d9ec4-9174-4259-9775-fddb65ba6972",
-          "component_type": "Rigidbody"
+          "_type": "gameobject",
+          "go": "b58d9ec4-9174-4259-9775-fddb65ba6972"
         },
-        "Length": 1,
-        "Offset": "0,0,48",
+        "BreakForce": 0,
+        "BreakTorque": 0,
+        "Damping": 0,
+        "EnableCollision": false,
+        "Frequency": 0,
+        "LocalFrame1": {
+          "Position": "0,0,0",
+          "Scale": "0,0,0",
+          "Rotation": "0,0,0,0"
+        },
+        "LocalFrame2": {
+          "Position": "0,0,0",
+          "Scale": "0,0,0",
+          "Rotation": "0,0,0,0"
+        },
+        "MaxLength": 0,
+        "MinLength": 0,
+        "OnBreak": null,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
-        "OnComponentUpdate": null
+        "OnComponentUpdate": null,
+        "StartBroken": false
       }
     ],
     "Children": [
       {
+        "__guid": "be21aa44-521c-4880-8118-c5c2354f63a3",
+        "Flags": 0,
+        "Name": "Joint",
+        "Position": "0,0,48",
+        "Rotation": "0,0.7071068,0,0.7071068",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.SliderJoint",
+            "__guid": "c3edf3f5-2ee8-4d1a-8cff-a08f480b53a0",
+            "Attachment": "Auto",
+            "Body": {
+              "_type": "gameobject",
+              "go": "b58d9ec4-9174-4259-9775-fddb65ba6972"
+            },
+            "BreakForce": 0,
+            "BreakTorque": 0,
+            "EnableCollision": false,
+            "Friction": 0,
+            "LocalFrame1": {
+              "Position": "0,0,0",
+              "Scale": "0,0,0",
+              "Rotation": "0,0,0,0"
+            },
+            "LocalFrame2": {
+              "Position": "0,0,0",
+              "Scale": "0,0,0",
+              "Rotation": "0,0,0,0"
+            },
+            "MaxLength": 16,
+            "MinLength": -16,
+            "OnBreak": null,
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "StartBroken": false
+          },
+          {
+            "__type": "Sandbox.Rigidbody",
+            "__guid": "6cd4f447-d1f1-40f3-9601-0a6b25bb284c",
+            "AngularDamping": 0,
+            "Gravity": false,
+            "LinearDamping": 0,
+            "Locking": {
+              "X": true,
+              "Y": true,
+              "Z": true,
+              "Pitch": false,
+              "Yaw": true,
+              "Roll": true
+            },
+            "MassCenterOverride": "0,0,0",
+            "MassOverride": 0,
+            "MotionEnabled": false,
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "OverrideMassCenter": false,
+            "RigidbodyFlags": 0,
+            "StartAsleep": false
+          }
+        ]
+      },
+      {
         "__guid": "1abc28a3-b750-4992-828e-f761f040341b",
         "Flags": 0,
-        "Name": "water_drum_01_base",
+        "Name": "Sphere",
         "Position": "0,24.48143,19.22501",
         "Scale": "0.6,0.6,0.6",
         "Enabled": true,
@@ -146,7 +244,7 @@
         "__guid": "b58d9ec4-9174-4259-9775-fddb65ba6972",
         "Flags": 0,
         "Name": "Hammer",
-        "Position": "0,-0.000003814697,80",
+        "Position": "-32,-0.000003814697,48",
         "Rotation": "-0.7071068,-0,0,0.7071068",
         "Enabled": true,
         "Components": [
@@ -183,9 +281,9 @@
             "__guid": "b4a477e2-81e9-4684-9ff6-ba88fc7c82c3",
             "Flags": 0,
             "Name": "Handle",
-            "Position": "23.99998,0.3519211,-0.000007301569",
+            "Position": "37.53923,0.3519211,-0.000007301569",
             "Rotation": "0.5,0.4999999,0.4999999,0.5",
-            "Scale": "0.1,0.1,1",
+            "Scale": "0.1,0.1,1.5",
             "Enabled": true,
             "Components": [
               {
@@ -194,7 +292,7 @@
                 "BodyGroups": 18446744073709551615,
                 "CreateAttachments": false,
                 "MaterialGroup": null,
-                "MaterialOverride": null,
+                "MaterialOverride": "materials/floor/mansion_wood_floor.vmat",
                 "Model": "models/dev/box.vmdl",
                 "OnComponentDestroy": null,
                 "OnComponentDisabled": null,
@@ -210,48 +308,6 @@
                 },
                 "RenderType": "On",
                 "Tint": "1,1,1,1"
-              },
-              {
-                "__type": "Sandbox.BoxCollider",
-                "__guid": "543b411f-dd56-426d-b013-29abb303c032",
-                "Center": "0,0,0",
-                "Friction": 0,
-                "IsTrigger": false,
-                "OnComponentDestroy": null,
-                "OnComponentDisabled": null,
-                "OnComponentEnabled": null,
-                "OnComponentFixedUpdate": null,
-                "OnComponentStart": null,
-                "OnComponentUpdate": null,
-                "OnObjectTriggerEnter": null,
-                "OnObjectTriggerExit": null,
-                "OnTriggerEnter": null,
-                "OnTriggerExit": null,
-                "Scale": "50,8096,50",
-                "Static": false,
-                "Surface": null,
-                "SurfaceVelocity": "0,0,0"
-              },
-              {
-                "__type": "Sandbox.BoxCollider",
-                "__guid": "f605e025-3938-481a-915e-5d82f489adc3",
-                "Center": "0,0,0",
-                "Friction": null,
-                "IsTrigger": true,
-                "OnComponentDestroy": null,
-                "OnComponentDisabled": null,
-                "OnComponentEnabled": null,
-                "OnComponentFixedUpdate": null,
-                "OnComponentStart": null,
-                "OnComponentUpdate": null,
-                "OnObjectTriggerEnter": null,
-                "OnObjectTriggerExit": null,
-                "OnTriggerEnter": null,
-                "OnTriggerExit": null,
-                "Scale": "55,8500,50",
-                "Static": false,
-                "Surface": null,
-                "SurfaceVelocity": "0,0,0"
               }
             ]
           },
@@ -259,9 +315,9 @@
             "__guid": "21cad013-768c-4492-8b88-4c3e5653deb3",
             "Flags": 0,
             "Name": "Head",
-            "Position": "52.00001,0.3519135,-0.00001494586",
+            "Position": "77.46077,0.3519135,-0.00001494586",
             "Rotation": "0.7071068,0,0,0.7071068",
-            "Scale": "0.12,0.15,0.3",
+            "Scale": "0.12,0.15,0.4",
             "Enabled": true,
             "Components": [
               {
@@ -270,7 +326,7 @@
                 "BodyGroups": 18446744073709551615,
                 "CreateAttachments": false,
                 "MaterialGroup": null,
-                "MaterialOverride": null,
+                "MaterialOverride": "models/rust_props/hvac_exhausts/hvac_exhaust_metal.vmat",
                 "Model": "models/dev/box.vmdl",
                 "OnComponentDestroy": null,
                 "OnComponentDisabled": null,
@@ -285,7 +341,7 @@
                   "AfterUILayer": false
                 },
                 "RenderType": "On",
-                "Tint": "1,0,0,1"
+                "Tint": "1,1,1,1"
               },
               {
                 "__type": "Sandbox.BoxCollider",
@@ -332,33 +388,6 @@
             ]
           }
         ]
-      },
-      {
-        "__guid": "39f947bf-dfbb-46bd-83fa-6eaeb1fa2a24",
-        "Flags": 0,
-        "Name": "citizen_human_male",
-        "Rotation": "0,0,-0.7071067,0.7071068",
-        "Components": [
-          {
-            "__type": "Sandbox.Prop",
-            "__guid": "f27bdaf9-73be-4a45-81d3-181b9a079da1",
-            "BodyGroups": 681,
-            "Health": 0,
-            "IsStatic": false,
-            "MaterialGroup": null,
-            "Model": "models/citizen_human/citizen_human_male.vmdl",
-            "OnComponentDestroy": null,
-            "OnComponentDisabled": null,
-            "OnComponentEnabled": null,
-            "OnComponentFixedUpdate": null,
-            "OnComponentStart": null,
-            "OnComponentUpdate": null,
-            "OnPropBreak": null,
-            "OnPropTakeDamage": null,
-            "StartAsleep": false,
-            "Tint": "1,1,1,1"
-          }
-        ]
       }
     ],
     "__variables": [],
@@ -391,6 +420,9 @@
   "MenuIcon": null,
   "DontBreakAsTemplate": false,
   "ResourceVersion": 1,
-  "__references": [],
+  "__references": [
+    "fish.mansion_wood_floor#89706",
+    "rust.hvac_exhaust_metal#25181"
+  ],
   "__version": 1
 }
