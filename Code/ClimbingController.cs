@@ -1,4 +1,5 @@
 using System;
+using System.Numerics;
 using Sandbox;
 using Sandbox.Physics;
 using SliderJoint = Sandbox.SliderJoint;
@@ -66,11 +67,10 @@ public sealed class ClimbingController : Component
 		var pos = offset + ( mouseTr.EndPosition.WithY( 0 ) - ( offset ) ).ClampLength( Length );
 		CursorBody.Position = pos;
 
-		var rot = Rotation.LookAt( CursorBody.Position - Slider.WorldPosition, Slider.LocalRotation.Forward );
-		Gizmo.Draw.Arrow( Slider.WorldPosition, Slider.WorldPosition + rot.Forward * 20 );
-
-		var pitchRotation = Rotation.FromAxis(Vector3.Left, 90);
-		Slider.WorldRotation = rot * pitchRotation;
+		var rot = Rotation.LookAt( CursorBody.Position - Slider.WorldPosition );
+		var newRotation = Rotation.FromPitch( rot.Pitch() + 90f );
+		Slider.WorldRotation = rot.Normal.x != 0 ? newRotation.Inverse : newRotation;
+		
 
 		if ( HammerBody.Touching.Any( x => !x.Tags.Has( "Player" ) ) )
 		{
